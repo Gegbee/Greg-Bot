@@ -21,15 +21,19 @@ async def on_message(message):
     if message.author == client.user and (message.author.name + message.author.discriminator) in users:
         return
 
-    message_array = message.content.split('-')
-
-    if message.content.lower() == "/help":
+    if "/help " in message.content.lower():
         await bot_commands.c_help(message)
 
-    if message_array[0].lower() == "/log":
-        await bot_commands.c_log(message)
+    if "/move " in message.content.lower():
+        await bot_commands.c_move(message)
 
-    if message_array[0].lower() == "/rotate" and len(message_array) > 2:
+    if "/turn " in message.content.lower():
         await bot_commands.c_rotate(message)
+        
+    # if "/log " in message.content.lower():
+    #     await bot_commands.c_log(message)
+
+    # if "/rotate " in message.content.lower() and len(message_array) > 2:
+    #     await bot_commands.c_rotate(message)
         
 client.run(TOKEN)
